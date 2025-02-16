@@ -1,46 +1,54 @@
+function actualizarPantalla(valor) {
+    document.getElementById("pantalla").value = valor;
+}
+
+function obtenerPantalla() {
+    return document.getElementById("pantalla").value;
+}
+
 function agregarValor(valor) {
-    document.getElementById("pantalla").value += valor;
+    actualizarPantalla(obtenerPantalla() + valor);
 }
 
 function limpiar() {
-    document.getElementById("pantalla").value = "";
+    actualizarPantalla("");
 }
 
 function calcular() {
-    let expresion = document.getElementById("pantalla").value;
+    let expresion = obtenerPantalla();
     try {
-        let resultado = eval(expresion);
-        document.getElementById("pantalla").value = resultado;
+        let resultado = evaluarExpresion(expresion);
+        actualizarPantalla(resultado);
     } catch (error) {
-        document.getElementById("pantalla").value = "Error";
+        actualizarPantalla("Expresión inválida");
     }
 }
 
+function evaluarExpresion(expresion) {
+    expresion = expresion.replace(/%/g, "*0.01");
+    if (!/^[0-9+\-*/().\s]*$/.test(expresion)) {
+        throw new Error("Expresión inválida");
+    }
+    return new Function("return " + expresion)();
+}
+
 function raizCuadrada() {
-    let valor = document.getElementById("pantalla").value;
+    let valor = obtenerPantalla();
     if (valor !== "") {
         let numero = parseFloat(valor);
-        if (numero < 0) {
-            document.getElementById("pantalla").value = "Error";
-        } else {
-            document.getElementById("pantalla").value = Math.sqrt(numero);
-        }
+        actualizarPantalla(numero < 0 ? "Error" : Math.sqrt(numero));
     }
 }
 
 function convertirPorcentaje() {
-    let valor = document.getElementById("pantalla").value;
+    let valor = obtenerPantalla();
     if (valor !== "") {
-        document.getElementById("pantalla").value = parseFloat(valor) / 100;
+        actualizarPantalla(parseFloat(valor) / 100);
     }
 }
 
 function cambiarModo() {
     document.body.classList.toggle("oscuro");
     let boton = document.querySelector(".modo");
-    if (document.body.classList.contains("oscuro")) {
-        boton.textContent = "Modo Claro";
-    } else {
-        boton.textContent = "Modo Oscuro";
-    }
+    boton.textContent = document.body.classList.contains("oscuro") ? "Modo Claro" : "Modo Oscuro";
 }
