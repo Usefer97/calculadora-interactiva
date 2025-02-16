@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Interactiva</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Calculadora Interactiva</h1>
+    </header>
+
+    <section class="intro">
+        <p>Realiza operaciones de forma rápida y sencilla.</p>
+        <p>Tambien puedes pulsar el botón inferior para alternar entre modo claro y oscuro.</p>
+    </section>
+
+    <button class="modo" onclick="cambiarModo()">Modo Oscuro</button> 
+
+    <div class="calculadora">
+        <input type="text" id="pantalla" disabled>
+
+        <div class="botones">
+            <button onclick="limpiar()">AC</button>
+            <button onclick="raizCuadrada()">√</button>
+            <button onclick="convertirPorcentaje()">%</button>
+            <button onclick="agregarValor('/')">/</button>
+            <button onclick="agregarValor('7')">7</button>
+            <button onclick="agregarValor('8')">8</button>
+            <button onclick="agregarValor('9')">9</button>
+            <button onclick="agregarValor('*')">*</button>
+            <button onclick="agregarValor('4')">4</button>
+            <button onclick="agregarValor('5')">5</button>
+            <button onclick="agregarValor('6')">6</button>
+            <button onclick="agregarValor('-')">-</button>
+            <button onclick="agregarValor('1')">1</button>
+            <button onclick="agregarValor('2')">2</button>
+            <button onclick="agregarValor('3')">3</button>
+            <button onclick="agregarValor('+')">+</button>
+            <button onclick="agregarValor('.')">.</button>
+            <button onclick="agregarValor('0')">0</button>
+            <button onclick="calcular()">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <footer>
+        <p>Creado por <strong>Eusebio Fernández</strong> | 
+            <a href="https://github.com/Usefer97" target="_blank">GitHub</a> |
+            <a href="https://www.linkedin.com/in/eusebio-fernandez/" target="_blank">LinkedIn</a>
+        </p>
+    </footer>
+
+</body>
+</html>
